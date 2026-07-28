@@ -1,0 +1,7 @@
+# MCP OAuth Lab
+Browser-only validator and guides for remote MCP OAuth metadata.
+- / — validate protected resource and authorization server metadata
+- /mcp-protected-resource-metadata — RFC 9728 guide
+- /mcp-pkce-checker — PKCE S256 compatibility
+- /mcp-oauth-debugger — discovery and authorization debugging order
+Static validation does not fetch endpoints or prove live OAuth enforcement.

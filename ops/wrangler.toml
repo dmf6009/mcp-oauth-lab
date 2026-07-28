@@ -1,0 +1,7 @@
+name = "mcp-oauth-lab-domain"
+main = "worker-proxy.js"
+compatibility_date = "2026-07-28"
+
+[[routes]]
+pattern = "mcpoauth.guagua-alvin.top"
+custom_domain = true

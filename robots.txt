@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mcpoauth.guagua-alvin.top/sitemap.xml

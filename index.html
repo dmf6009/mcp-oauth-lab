@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MCP OAuth Metadata Validator — RFC 9728 & PKCE Checker</title>
+<meta name="description" content="Validate remote MCP OAuth protected resource metadata, authorization server metadata, PKCE support, issuer relationships, scopes, and endpoint security locally.">
+<link rel="canonical" href="https://mcpoauth.guagua-alvin.top/">
+<meta property="og:title" content="MCP OAuth Metadata Validator"><meta property="og:description" content="Debug RFC 9728 discovery and OAuth 2.1 metadata for remote MCP servers."><meta property="og:type" content="website"><meta property="og:url" content="https://mcpoauth.guagua-alvin.top/">
+<meta name="theme-color" content="#0a1020"><link rel="icon" href="/assets/favicon.svg"><link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"MCP OAuth Metadata Validator","applicationCategory":"DeveloperApplication","operatingSystem":"Any","url":"https://mcpoauth.guagua-alvin.top/","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head><body>
+<header><a class="brand" href="/"><span>O</span>MCP OAuth Lab</a><nav><a href="#validator">Validator</a><a href="/mcp-protected-resource-metadata">RFC 9728</a><a href="/mcp-pkce-checker">PKCE</a></nav></header>
+<main>
+<section class="hero"><p class="kicker">REMOTE MCP AUTH · PREFLIGHT</p><h1>Make OAuth discovery <em>boringly correct.</em></h1><p>Paste the two metadata documents used by a remote MCP deployment. The validator checks relationships—not just JSON syntax—and explains what a client is likely to reject.</p><div class="chips"><span>RFC 9728</span><span>OAuth metadata</span><span>PKCE S256</span><span>Local-only</span></div></section>
+<section class="tool" id="validator">
+  <div class="tool-head"><div><p class="kicker">METADATA CHAIN</p><h2>MCP OAuth validator</h2></div><button id="example" class="ghost">Load broken example</button></div>
+  <label>Protected resource URL<input id="resource-url" type="url" placeholder="https://mcp.example.com/mcp" value="https://mcp.example.com/mcp"></label>
+  <div class="editors">
+    <label><span>Protected Resource Metadata</span><small>/.well-known/oauth-protected-resource</small><textarea id="resource-json" spellcheck="false" placeholder='{"resource":"https://mcp.example.com/mcp", ...}'></textarea></label>
+    <label><span>Authorization Server Metadata</span><small>/.well-known/oauth-authorization-server</small><textarea id="auth-json" spellcheck="false" placeholder='{"issuer":"https://auth.example.com", ...}'></textarea></label>
+  </div>
+  <button id="validate" class="primary">Validate metadata chain <kbd>⌘ ↵</kbd></button>
+  <div id="report" class="report empty"><p>Paste both metadata documents to inspect discovery, endpoints, issuer linkage, PKCE, registration, and scopes.</p></div>
+</section>
+<section class="grid"><article><b>01</b><h3>Discovery path</h3><p>Checks the resource identifier and generates the well-known URL clients should request.</p></article><article><b>02</b><h3>Trust relationship</h3><p>Compares protected resource metadata with the authorization server issuer and advertised server list.</p></article><article><b>03</b><h3>OAuth endpoints</h3><p>Flags insecure authorization, token, registration, JWKS, revocation, and introspection endpoints.</p></article><article><b>04</b><h3>Client compatibility</h3><p>Checks authorization code support, PKCE S256, response modes, token auth methods, and scopes.</p></article></section>
+<section class="content"><p class="kicker">WHY THIS BREAKS</p><h2>Remote MCP authentication is a chain of metadata decisions.</h2><p>A protected resource tells the client which authorization servers may issue tokens for it. The client then discovers an authorization server, negotiates registration where supported, creates a PKCE challenge, and sends the resource identifier through the flow. A syntactically valid document can still fail when those values disagree.</p>
+<div class="split"><div><h3>High-confidence checks</h3><ul><li>HTTPS and exact origin handling</li><li>Resource and issuer identity</li><li>Authorization server linkage</li><li>Authorization code and PKCE S256</li><li>Endpoint URL credential leakage</li></ul></div><div><h3>Outside this static scan</h3><ul><li>Live CORS and HTTP status behavior</li><li>Token signature and audience validation</li><li>Dynamic registration policy</li><li>Redirect URI enforcement</li><li>Actual scope authorization</li></ul></div></div></section>
+<section class="links"><a href="/mcp-protected-resource-metadata"><strong>RFC 9728 protected resource metadata</strong><span>Field-by-field MCP guide →</span></a><a href="/mcp-pkce-checker"><strong>MCP PKCE checker</strong><span>Validate S256 compatibility →</span></a><a href="/mcp-oauth-debugger"><strong>MCP OAuth debugging checklist</strong><span>Follow the discovery chain →</span></a></section>
+</main>
+<footer><a class="brand" href="/"><span>O</span>MCP OAuth Lab</a><div><a href="/privacy">Privacy</a><a href="https://github.com/dmf6009/mcp-oauth-lab">GitHub</a></div></footer>
+<script src="/script.js" defer></script></body></html>
